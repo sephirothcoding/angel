@@ -70,6 +70,7 @@
     // Kullanım, yalnızca xat.com ile sınırlıdır ve sahibin açık onayını gerektirir.
     // İzinsiz kullanım yasaktır ve yasal işlemlere tabidir. -->
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,39 +78,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <style>
-        /* Stiluri generale */
         body {
             margin: 0;
             padding: 0;
-            background-color: #87CEEB; /* Skyblue */
+            background-color: #0c1575; /* Fundal albastru închis */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
-            color: #ffffff; /* Text alb */
+            color: #ffffff; 
         }
 
-        /* Stiluri pentru titlu */
         h1 {
-            margin: 0;
-            color: #ffffff; /* Alb */
+            margin-top: 20px;
+            color: #FF6347;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
             font-size: 3em;
             font-weight: bold;
-            background: linear-gradient(135deg, #1E90FF, #00008B);
+            background: linear-gradient(135deg, #FF6347, #8B0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: textGlow 1.5s ease-in-out infinite;
         }
 
-        /* Container profil */
         .profile-container {
             max-width: 900px;
             margin: 50px auto;
             padding: 20px;
-            background-color: rgba(0, 0, 139, 0.8);
+            background-color: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(30, 144, 255, 0.7);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
             position: relative;
             display: flex;
             flex-direction: column;
@@ -121,7 +120,7 @@
             height: 250px;
             background: url('https://xatimg.com/image/aGBLR1MOWcPH.jpg') no-repeat center center;
             background-size: cover;
-            border-bottom: 5px solid #1E90FF;
+            border-bottom: 5px solid #FF6347;
         }
 
         .avatar-container {
@@ -133,8 +132,8 @@
             height: 150px;
             border-radius: 50%;
             overflow: hidden;
-            border: 5px solid #000000;
-            box-shadow: 0 0 15px rgba(30, 144, 255, 0.7);
+            border: 5px solid #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
         }
 
         .avatar-container img {
@@ -148,47 +147,39 @@
             margin-top: 100px;
         }
 
-        .profile-details h1 {
-            color: #ffffff;
-        }
-
-        .profile-details p {
-            margin: 10px 0;
-            font-size: 1.1rem;
-            color: #ffffff;
-            font-style: italic;
-        }
-
         .profile-buttons a {
             display: inline-block;
             padding: 12px 25px;
             margin: 5px;
             text-decoration: none;
             color: #fff;
-            background-color: #1E90FF;
-            border-radius: 5px;
+            background-color: #FF6347;
+            border-radius: 10px;
             font-size: 1rem;
             font-weight: bold;
             transition: background-color 0.3s, transform 0.3s;
         }
 
         .info-card {
-            background-color: rgba(0, 0, 139, 0.9);
-            border: 1px solid #00008B;
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 2px solid #FFFFFF;
             border-radius: 8px;
             padding: 20px;
-            flex: 1 1 30%;
-            box-shadow: 0 4px 8px rgba(30, 144, 255, 0.7);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
             transition: transform 0.3s, box-shadow 0.3s;
             margin-bottom: 20px;
             min-width: 280px;
-            color: #ffffff; /* Text alb */
         }
 
         .info-card h3 {
-            margin-top: 0;
-            color: #ffffff; /* Alb */
+            color: #FF6347;
             font-size: 1.5rem;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); }
+            100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
         }
     </style>
 </head>
@@ -228,3 +219,4 @@
     </div>
 </body>
 </html>
+
