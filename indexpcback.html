@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #0c1575; /* Fundal albastru deschis */
-            background-size: cover;
+            background-color: skyblue; /* Fundal Sky Blue */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,14 +18,10 @@
 
         h1 {
             margin-top: 20px;
-            color: #FF6347; /* Red */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* White Glow */
+            color: white;
+            text-shadow: 0 0 10px blue; /* Glow Albastru */
             font-size: 3em;
             font-weight: bold;
-            background: linear-gradient(135deg, #FF6347, #8B0000); /* Red Shades */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: textGlow 1.5s ease-in-out infinite;
         }
 
         .gallery {
@@ -41,17 +36,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 2px solid #FFFFFF; /* White border */
+            border: 2px solid white;
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.8); /* Black */
+            background-color: rgba(0, 0, 0, 0.7); /* Fundal negru semi-transparent */
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* White Glow */
+            box-shadow: 0 0 20px blue; /* Glow Albastru */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .gallery-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 1); /* Stronger White Glow */
+            box-shadow: 0 0 30px blue; /* Glow mai puternic la hover */
         }
 
         .gallery-item img {
@@ -65,26 +60,12 @@
             opacity: 0.8;
         }
 
-        .name {
+        .name, .price {
             margin-top: 5px;
-            color: #FFFFFF; /* White */
+            color: white;
             font-weight: bold;
             font-size: 1.1em;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); /* White Glow */
-        }
-
-        .price {
-            margin-top: 10px;
-            color: #FFFFFF; /* White */
-            font-weight: bold;
-            font-size: 1.2em;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); /* White Glow */
-        }
-
-        @keyframes textGlow {
-            0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
-            50% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); }
-            100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+            text-shadow: 0 0 5px blue; /* Glow Albastru */
         }
     </style>
 </head>
@@ -110,28 +91,19 @@
                     const imgItem = document.createElement('div');
                     imgItem.classList.add('gallery-item');
 
-                    // Creăm elementul img
                     const img = document.createElement('img');
                     img.src = file.download_url;
                     img.alt = file.name;
 
-                    // Verificăm dacă fișierul există
                     img.onload = function() {
-                        // Afișăm numele imaginii
                         const name = document.createElement('div');
                         name.classList.add('name');
                         name.textContent = `Exclusiv ${file.name.replace(/\.(png|gif)$/, '')}`;
 
-                        // Determinăm prețul în funcție de tipul fișierului
                         const price = document.createElement('div');
                         price.classList.add('price');
-                        if (file.name.endsWith('.png')) {
-                            price.textContent = 'Price: 600 xats'; // Preț pentru fișiere .png
-                        } else if (file.name.endsWith('.gif')) {
-                            price.textContent = 'Price: 1500 xats'; // Preț pentru fișiere .gif
-                        }
+                        price.textContent = file.name.endsWith('.png') ? 'Price: 600 xats' : 'Price: 1500 xats';
 
-                        // Adăugăm imaginea, numele și prețul la galerie
                         imgItem.appendChild(img);
                         imgItem.appendChild(name);
                         imgItem.appendChild(price);
@@ -139,7 +111,6 @@
                     };
 
                     img.onerror = function() {
-                        // Dacă fișierul nu există, afișăm un mesaj în consolă
                         console.log(`File not found: ${file.name}`);
                     };
                 }
