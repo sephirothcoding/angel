@@ -35,7 +35,6 @@
     // Kullanım, yalnızca xat.com ile sınırlıdır ve sahibin açık onayını gerektirir.
     // İzinsiz kullanım yasaktır ve yasal işlemlere tabidir. -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +44,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #0c1575; /* Fundal albastru deschis */
+            background-color: #87CEEB; /* Skyblue */
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -53,22 +52,23 @@
             margin: 0;
             min-height: 100vh;
             overflow-y: auto;
+            color: #fff; /* Text alb */
         }
 
         h1 {
             margin-top: 20px;
-            color: #FF6347; /* Red */
-            text-shadow: 0 0 10px rgba(255, 99, 71, 0.7); /* Red Glow */
+            color: #FFFFFF;
+            text-shadow: 0 0 10px rgba(30, 144, 255, 0.7);
             font-size: 3em;
             font-weight: bold;
-            background: linear-gradient(135deg, #FF6347, #8B0000); /* Red Shades */
+            background: linear-gradient(135deg, #1E90FF, #00008B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: textGlow 1.5s ease-in-out infinite;
         }
 
         h2 {
-            color: #FF6347; /* Red */
+            color: #FFFFFF;
             font-size: 2em;
             text-align: center;
             margin-top: 40px;
@@ -86,17 +86,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 2px solid #000000; /* Black */
+            border: 2px solid #1E90FF;
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.8); /* Black */
+            background-color: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Red Glow */
+            box-shadow: 0 0 20px rgba(30, 144, 255, 0.7);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .gallery-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 0, 0, 1); /* Stronger Red Glow */
+            box-shadow: 0 0 30px rgba(30, 144, 255, 1);
         }
 
         .gallery-item img {
@@ -110,26 +110,18 @@
             opacity: 0.8;
         }
 
-        .name {
-            margin-top: 5px;
-            color: #FF6347; /* Red */
-            font-weight: bold;
-            font-size: 1.1em;
-            text-shadow: 0 0 5px rgba(255, 99, 71, 0.7); /* Red Glow */
-        }
-
-        .price {
+        .name, .price {
             margin-top: 10px;
-            color: #FF6347; /* Red */
+            color: #FFFFFF;
             font-weight: bold;
             font-size: 1.2em;
-            text-shadow: 0 0 5px rgba(255, 99, 71, 0.7); /* Red Glow */
+            text-shadow: 0 0 5px rgba(30, 144, 255, 0.7);
         }
 
         @keyframes textGlow {
-            0% { text-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
-            50% { text-shadow: 0 0 15px rgba(255, 99, 71, 1); }
-            100% { text-shadow: 0 0 5px rgba(255, 99, 71, 0.5); }
+            0% { text-shadow: 0 0 5px rgba(30, 144, 255, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(30, 144, 255, 1); }
+            100% { text-shadow: 0 0 5px rgba(30, 144, 255, 0.5); }
         }
     </style>
 </head>
@@ -145,20 +137,16 @@
 
 <script>
     async function fetchGifs() {
-        const repoOwner = 'sephirothcoding';  // Numele de utilizator GitHub
-        const repoName = 'STORE';             // Numele repository-ului
-        const gifFolder = 'gifs';             // Folderul cu GIF-uri din repository
+        const repoOwner = 'sephirothcoding';
+        const repoName = 'STORE';
+        const gifFolder = 'gifs';
         const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${gifFolder}`;
         
         try {
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
-
-            // Filtrăm doar fișierele GIF
-            return data
-                .filter(item => item.name.endsWith('.gif'))
-                .map(file => file.name);
+            return data.filter(item => item.name.endsWith('.gif')).map(file => file.name);
         } catch (error) {
             console.error('Failed to fetch GIFs:', error);
             return [];
@@ -166,44 +154,31 @@
     }
 
     function extractNumber(fileName) {
-        const match = fileName.match(/\d+/);  // Extrage numărul din numele fișierului
+        const match = fileName.match(/\d+/);
         return match ? parseInt(match[0], 10) : 0;
     }
 
     function categorizeAndSortGifs(gifNames) {
-        const btGifs = gifNames
-            .filter(name => name.startsWith('Bt'))
-            .sort((a, b) => extractNumber(b) - extractNumber(a));  // Sortare descrescătoare
-        const afGifs = gifNames
-            .filter(name => name.startsWith('Af'))
-            .sort((a, b) => extractNumber(b) - extractNumber(a));  // Sortare descrescătoare
+        const btGifs = gifNames.filter(name => name.startsWith('Bt')).sort((a, b) => extractNumber(b) - extractNumber(a));
+        const afGifs = gifNames.filter(name => name.startsWith('Af')).sort((a, b) => extractNumber(b) - extractNumber(a));
         return { btGifs, afGifs };
     }
 
     function createGallery(gifNames, galleryId, price, prefix) {
         const gallery = document.getElementById(galleryId);
-        gallery.innerHTML = ''; // Golim galeria
-
-        gifNames.forEach((gifName, index) => {
+        gallery.innerHTML = '';
+        gifNames.forEach((gifName) => {
             const gifItem = document.createElement('div');
             gifItem.classList.add('gallery-item');
-
-            // Încarcă imaginea GIF
             const img = document.createElement('img');
             img.src = `https://raw.githubusercontent.com/sephirothcoding/STORE/main/gifs/${gifName}`;
             img.alt = gifName;
-
-            // Afișează numele GIF-ului
             const name = document.createElement('div');
             name.classList.add('name');
-            name.textContent = `${prefix} (${extractNumber(gifName)})`;  // Folosim numărul corect
-
-            // Adaugă prețul sub GIF
+            name.textContent = `${prefix} (${extractNumber(gifName)})`;
             const priceDiv = document.createElement('div');
             priceDiv.classList.add('price');
             priceDiv.textContent = `Price: ${price} xats`;
-
-            // Afișăm imaginea, numele și prețul
             gifItem.appendChild(img);
             gifItem.appendChild(name);
             gifItem.appendChild(priceDiv);
@@ -214,7 +189,6 @@
     async function loadGifs() {
         const gifNames = await fetchGifs();
         const { btGifs, afGifs } = categorizeAndSortGifs(gifNames);
-
         createGallery(btGifs, 'bt-gallery', 300, 'Bt');
         createGallery(afGifs, 'af-gallery', 500, 'Af');
     }
@@ -224,4 +198,3 @@
 
 </body>
 </html>
-
