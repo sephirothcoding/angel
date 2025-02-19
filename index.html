@@ -70,7 +70,6 @@
     // Kullanım, yalnızca xat.com ile sınırlıdır ve sahibin açık onayını gerektirir.
     // İzinsiz kullanım yasaktır ve yasal işlemlere tabidir. -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,7 +81,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #001F3F; /* Albastru închis */
+            background-color: #87CEEB; /* Skyblue */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -95,12 +94,9 @@
         h1 {
             margin: 0;
             color: #ffffff; /* Alb */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 15px rgba(135, 206, 250, 0.9); /* Skyblue glow */
             font-size: 3em;
             font-weight: bold;
-            background: linear-gradient(135deg, #1E90FF, #00008B);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         /* Container profil */
@@ -108,7 +104,7 @@
             max-width: 900px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #002B5B; /* Albastru închis */
+            background-color: rgba(0, 0, 100, 0.9); /* Blue inchis */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(30, 144, 255, 0.7);
             position: relative;
@@ -134,7 +130,7 @@
             height: 150px;
             border-radius: 50%;
             overflow: hidden;
-            border: 5px solid #00008B;
+            border: 5px solid #000000;
             box-shadow: 0 0 15px rgba(30, 144, 255, 0.7);
         }
 
@@ -150,7 +146,8 @@
         }
 
         .profile-details h1 {
-            color: #ffffff;
+            color: #ffffff; /* Alb */
+            text-shadow: 0 0 15px rgba(135, 206, 250, 0.9); /* Skyblue glow */
         }
 
         .profile-details p {
@@ -174,8 +171,8 @@
         }
 
         .info-card {
-            background-color: #003366; /* Albastru mai închis */
-            border: 1px solid #1E90FF;
+            background-color: rgba(0, 0, 100, 0.9); /* Blue inchis */
+            border: 1px solid #00008B;
             border-radius: 8px;
             padding: 20px;
             flex: 1 1 30%;
